@@ -124,4 +124,4 @@ The versioning is semantic based on the presence of `--fix`, `--feat` or `--brea
 
 ## License
 
-MIT
+MIT.
