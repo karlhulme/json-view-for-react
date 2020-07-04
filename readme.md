@@ -1,7 +1,7 @@
 # JSON View for React
 
 ![](https://github.com/karlhulme/json-view-for-react/workflows/CD/badge.svg)
-[![npm](https://img.shields.io/npm/v/jsonotron.svg)](https://www.npmjs.com/package/json-view-for-react)
+[![npm](https://img.shields.io/npm/v/json-view-for-react.svg)](https://www.npmjs.com/package/json-view-for-react)
 [![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com)
 
 A React component that displays a JSON View with the following goals:
