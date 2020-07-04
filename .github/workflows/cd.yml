@@ -65,6 +65,7 @@ jobs:
         if: steps.prepare.outputs.canRelease == 'yes'
         run: |
           npm ci
+          npm run build
           npm publish
         env:
           NODE_AUTH_TOKEN: ${{secrets.npm_token}}
