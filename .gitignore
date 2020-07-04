@@ -8,8 +8,9 @@
 # testing
 /coverage
 
-# production
+# building
 /build
+/dist
 /.parcel-cache
 
 # misc
