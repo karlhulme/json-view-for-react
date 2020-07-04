@@ -1,5 +1,9 @@
 # JSON View for React
 
+![](https://github.com/karlhulme/json-view-for-react/workflows/CD/badge.svg)
+[![npm](https://img.shields.io/npm/v/jsonotron.svg)](https://www.npmjs.com/package/json-view-for-react)
+[![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com)
+
 A React component that displays a JSON View with the following goals:
 
 * Do not rely on `JSON.stringify`.   Walk the tree instead.
@@ -13,7 +17,7 @@ A React component that displays a JSON View with the following goals:
 
 ## Usage
 
-Import and then pass an object to the `obj` property.
+Just pass an object to the `obj` property of the `JsonView` component.
 
 ```javascript
 import React from 'react'
