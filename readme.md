@@ -13,6 +13,8 @@ A React component that displays a JSON View with the following goals:
 * 100% test coverage
 * A learning project to understand how to publish and consume individual React components without the commitment of storybook or bit etc.
 
+The screenshot below shows the JSON view with the default styles applied.
+
 ![Screenshot](./screenshot.png)
 
 ## Usage
