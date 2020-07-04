@@ -1,0 +1,63 @@
+{
+  "name": "json-view-for-react",
+  "version": "1.0.3",
+  "description": "A JSON view that you can style using CSS, inline-styles or CSS-in-JS.",
+  "main": "dist/index.js",
+  "scripts": {
+    "start": "parcel serve ./public/index.html",
+    "build": "parcel build ./src/index.js",
+    "test": "jest && standard",
+    "reinstall": "rm -rf node_modules && npm install"
+  },
+  "keywords": [
+    "json",
+    "react"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/karlhulme/json-view-for-react.git"
+  },
+  "author": "Karl Hulme <karlhulme@hotmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/karlhulme/json-view-for-react/issues"
+  },
+  "homepage": "https://github.com/karlhulme/json-view-for-react#readme",
+  "dependencies": {
+    "prop-types": "^15.5.7"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.10.4",
+    "@babel/preset-env": "^7.10.4",
+    "@babel/preset-react": "^7.10.4",
+    "@testing-library/react": "^10.4.3",
+    "babel-jest": "^26.1.0",
+    "jest": "^26.1.0",
+    "parcel": "^2.0.0-beta.1",
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1",
+    "standard": "^14.3.4"
+  },
+  "peerDependencies": {
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1"
+  },
+  "jest": {
+    "collectCoverage": true,
+    "coverageThreshold": {
+      "global": {
+        "branches": 100,
+        "functions": 100,
+        "lines": 100,
+        "statements": 0
+      }
+    },
+    "testEnvironment": "jsdom"
+  },
+  "browserslist": [
+    "defaults",
+    "not IE 11",
+    "not IE_Mob 11",
+    "maintained node versions"
+  ]
+}
