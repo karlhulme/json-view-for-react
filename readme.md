@@ -26,7 +26,7 @@ import React from 'react'
 import { JsonView } from 'json-view-for-react'
 
 function Example () {
-  return <JsonView obj={{ hello: 'world' }} showLineNumbers />
+  return <JsonView obj={{ hello: 'world' }} showLineNumbers highlightedLineNumbers={[2, 4]} />
 }
 ```
 
@@ -34,7 +34,8 @@ Property Name | Description
 ---|---
 obj | A JSON object to be displayed.
 showLineNumbers | An optional boolean that indicates if line numbers should be displayed next to each line.
-onCreateElement | An optional function (contentType, content, key, jsonCodeInfo) that can return a bespoke element for any given contentType rather than use the defaults.  If the function does not return a value that satisfies React.isValidElement then the default will be used instead.  So you don't have to support every contentType value.
+highlightedLineNumbers | An array of line numbers that should be displayed highlighted.
+onCreateElement | An optional `function (contentType, content, elementProps)` that can return a bespoke element for any given `contentType` rather than use the defaults.  If the function does not return a value that satisfies `React.isValidElement` then the default will be used instead so you don't have to support every contentType value.  If you do return an element then you should append the `{...elementProps}` to it.
 
 ### Styling
 
@@ -75,12 +76,13 @@ Alternatively, you can use the onCreateElement function property to create your 
 
 * **contentType** - one of the content type constants that are exported from the library and defined below.
 * **content** - the content that should be placed inside the newly created element.  For example: `return <span>{content}</span>`
-* **key** - the key that should be assigned to the element.  This will only be supplied, and should only be applied to the returned element, when the contentType is `LINE`.  The key will be `null` for other `contentType`'s so do not apply that because `{key=null}` is not helpful.
+* **elementProps** - these properties should be appended to any element returned.  This is used to pass a key value for the LINE and HIGHLIGHTED_LINE element.
 
 contentType | Description
 ---|---
 CODE | A wrapper for the code block.
 LINE | A wrapper for an individual line of code.
+HIGHLIHTED_LINE | A wrapper for an individual highlighted line of code.
 STRING_VALUE | A string value.
 NUMBER_VALUE | A number value.
 BOOLEAN_VALUE | A boolean value, either true or false.
