@@ -21,6 +21,7 @@ import {
 import {
   CODE,
   LINE,
+  HIGHLIGHTED_LINE,
   STRING_VALUE,
   NUMBER_VALUE,
   BOOLEAN_VALUE,
@@ -34,29 +35,29 @@ import {
  * the default elements.
  * @param {String} contentType The type of content that the element will contain.
  * @param {Object} content The content of the element.
- * @param {Number} key This value is required for the LINE element.  For all other elements
- * this value should be null.
+ * @param {Object} elementProps A props that should be added to the created element.
  * @param {Function} [onCreateElement] An optional function that creates an element.
  */
-function createElement (contentType, content, key, onCreateElement) {
+function createElement (contentType, content, elementProps, onCreateElement) {
   let element = null
 
   if (onCreateElement) {
-    element = onCreateElement(contentType, content)
+    element = onCreateElement(contentType, content, elementProps)
   }
 
   if (!React.isValidElement(element)) {
     switch (contentType) {
-      case CODE: return <code className='json-view-for-react'>{content}</code>
-      case LINE: return <div className='line' key={key}>{content}</div>
-      case STRING_VALUE: return <span className='str'>{content}</span>
-      case NUMBER_VALUE: return <span className='num'>{content}</span>
-      case BOOLEAN_VALUE: return <span className='bool'>{content}</span>
-      case NULL_VALUE: return <span className='null'>{content}</span>
-      case PROPERTY_NAME: return <span className='prop'>{content}</span>
-      case LINE_NUMBER: return <span className='ln'>{content}</span>
+      case CODE: return <code className='json-view-for-react' {...elementProps}>{content}</code>
+      case LINE: return <div className='line' {...elementProps}>{content}</div>
+      case HIGHLIGHTED_LINE: return <div className='hi-line' {...elementProps}>{content}</div>
+      case STRING_VALUE: return <span className='str' {...elementProps}>{content}</span>
+      case NUMBER_VALUE: return <span className='num' {...elementProps}>{content}</span>
+      case BOOLEAN_VALUE: return <span className='bool' {...elementProps}>{content}</span>
+      case NULL_VALUE: return <span className='null' {...elementProps}>{content}</span>
+      case PROPERTY_NAME: return <span className='prop' {...elementProps}>{content}</span>
+      case LINE_NUMBER: return <span className='ln' {...elementProps}>{content}</span>
       /* istanbul ignore next */ // There is no case for getting an unrecognised contentType here.
-      default: return <span>{content}</span>
+      default: return <span {...elementProps}>{content}</span>
     }
   }
 
@@ -72,7 +73,7 @@ function createElement (contentType, content, key, onCreateElement) {
  */
 function convertLineToCodeLineContent (line, onCreateElement) {
   // curry the span creator to reduce the length of the lines below
-  const fnElem = (contentType, content) => createElement(contentType, content, null, onCreateElement)
+  const fnElem = (contentType, content) => createElement(contentType, content, {}, onCreateElement)
 
   const cont = line.continuation ? ',' : ''
 
@@ -101,30 +102,36 @@ function convertLineToCodeLineContent (line, onCreateElement) {
  * @param {Object} props.obj A JSON object to be displayed.
  * @param {Boolean} [props.showLineNumbers] An optional boolean that indicates if line
  * numbers should be displayed next to each line.
- * @param {Function} [props.onCreateElement] An optional function (contentType, content, key, jsonCodeInfo) that
+ * @param {Boolean} [props.highlightedLineNumbers] An optional array of line numbers
+ * indicating which lines should be highlighted.
+ * @param {Function} [props.onCreateElement] An optional function (contentType, content, elementProps) that
  * can return a bespoke element for any given contentType rather than use the defaults.
  * If the function does not return a value that satisfies React.isValidElement then the
  * default will be used instead.  So you don't have to support every contentType value.
  */
-export function JsonView ({ obj, showLineNumbers = false, onCreateElement = null }) {
+export function JsonView ({ obj, showLineNumbers = false, highlightedLineNumbers = [], onCreateElement = null }) {
   const lines = convertPojoToLines(obj)
 
   const lineNoCharCount = lines.length.toString().length
 
   const codeLines = lines.map((line, index) => {
     const lineNoText = line.lineNo.toString().padStart(lineNoCharCount, '\u00a0')
-    const lineNoSpan = showLineNumbers ? createElement(LINE_NUMBER, lineNoText, null, onCreateElement) : ''
+    const lineNoSpan = showLineNumbers ? createElement(LINE_NUMBER, lineNoText, {}, onCreateElement) : ''
     const spaces = '\u00a0'.repeat(line.indent)
     const lineContent = convertLineToCodeLineContent(line, onCreateElement)
 
-    return createElement(LINE, <>{lineNoSpan}{spaces}{lineContent}</>, index, onCreateElement)
+    const isHighlightedLine = highlightedLineNumbers.includes(index)
+    const elementType = isHighlightedLine ? HIGHLIGHTED_LINE : LINE
+
+    return createElement(elementType, <>{lineNoSpan}{spaces}{lineContent}</>, { key: index }, onCreateElement)
   })
 
-  return createElement(CODE, codeLines, null, onCreateElement)
+  return createElement(CODE, codeLines, {}, onCreateElement)
 }
 
 JsonView.propTypes = {
   obj: PropTypes.any,
   showLineNumbers: PropTypes.bool,
+  highlightedLineNumbers: PropTypes.array,
   onCreateElement: PropTypes.func
 }

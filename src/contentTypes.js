@@ -9,6 +9,9 @@ export const CODE = 'CODE'
 // A wrapper for a line of code.
 export const LINE = 'LINE'
 
+// A wrapper for a highlighted line of code.
+export const HIGHLIGHTED_LINE = 'HIGHLIGHTED_LINE'
+
 // "myString"
 export const STRING_VALUE = 'STRING_VALUE'
 

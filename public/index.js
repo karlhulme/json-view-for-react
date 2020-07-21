@@ -36,4 +36,4 @@ function onCreateElement (contentType, content) {
   }
 }
 
-render(<JsonView obj={exampleObject} showLineNumbers onCreateElement={onCreateElement} />, document.getElementById('root'))
+render(<JsonView obj={exampleObject} showLineNumbers highlightedLineNumbers={[2, 3, 4]} onCreateElement={onCreateElement} />, document.getElementById('root'))

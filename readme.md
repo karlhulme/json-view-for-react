@@ -51,6 +51,7 @@ The component will add classes to the default elements that it creates.  So you 
     }
 
     code.json-view-for-react .line { white-space: nowrap; }
+    code.json-view-for-react .hi-line { white-space: nowrap; background-color: red }
 
     code.json-view-for-react .str { color: rgb(121, 182, 242); }
     code.json-view-for-react .num { color: rgb(255, 255, 200); }

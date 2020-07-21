@@ -66,7 +66,7 @@ test('should not render a function property on an object', async () => {
   expect(queryByText(/myAction/)).toEqual(null)
 })
 
-test('should render a complex object', async () => {
+test('should render a complex object with highlighted lines', async () => {
   const complexObj = {
     valueA: 12,
     valueB: 'some-value',
@@ -81,7 +81,7 @@ test('should render a complex object', async () => {
     ]
   }
 
-  const { getByText } = render(<JsonView obj={complexObj} />)
+  const { getByText } = render(<JsonView obj={complexObj} highlightedLineNumbers={[2, 4]} />)
 
   expect(getByText(/"valueA"/).className).toEqual(expect.stringContaining('prop'))
   expect(getByText(/"valueB"/).className).toEqual(expect.stringContaining('prop'))
