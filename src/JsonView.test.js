@@ -2,7 +2,6 @@
 import React from 'react'
 import { render } from '@testing-library/react'
 import { JsonView } from './JsonView'
-import { CODE } from './contentTypes'
 
 test('should render undefined', async () => {
   const { container } = render(<JsonView obj={undefined} />)
@@ -99,23 +98,6 @@ test('should render a complex object with highlighted lines', async () => {
   expect(getByText(/35/).className).toEqual(expect.stringContaining('num'))
   expect(getByText(/37/).className).toEqual(expect.stringContaining('num'))
   expect(getByText(/is-here/).className).toEqual(expect.stringContaining('str'))
-})
-
-test('should render a bespoke SAMP element in place of the normal CODE element using the onCreateElement function', async () => {
-  const onCreateElement = (contentType, content) => {
-    if (contentType === CODE) {
-      return <samp>{content}</samp>
-    }
-  }
-
-  const { container } = render(<JsonView obj={{ hello: 'world' }} onCreateElement={onCreateElement} />)
-  expect(container.firstElementChild.tagName).toEqual('SAMP')
-  // <samp>
-  //  <div>{</div>
-  //   <div>  "hello": "world"</div>
-  //  <div>}</div>
-  // </samp>
-  expect(container.firstElementChild.childElementCount).toEqual(3)
 })
 
 test('should render line numbers', async () => {
