@@ -24,15 +24,15 @@
   },
   "homepage": "https://github.com/karlhulme/json-view-for-react#readme",
   "dependencies": {
-    "prop-types": "^15.5.7"
+    "prop-types": "^15.7.2"
   },
   "devDependencies": {
-    "@babel/core": "^7.10.4",
-    "@babel/preset-env": "^7.10.4",
+    "@babel/core": "^7.11.1",
+    "@babel/preset-env": "^7.11.0",
     "@babel/preset-react": "^7.10.4",
-    "@testing-library/react": "^10.4.3",
-    "babel-jest": "^26.1.0",
-    "jest": "^26.1.0",
+    "@testing-library/react": "^10.4.8",
+    "babel-jest": "^26.3.0",
+    "jest": "^26.4.0",
     "parcel": "^2.0.0-beta.1",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",

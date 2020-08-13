@@ -10,8 +10,8 @@ Most syntax highlighters will render into a PRE and then use regular expressions
 
 This project is a learning project to achieve the following goals:
 
-* Understand how to publish and consume individual React components without the adding storybook or bit etc.
-* Understand how to create components which are non-trivial but assume the host application will want to fully style the result without any risk of CSS class name collision.
+* Develop, test, publish and consume an individual React component without the adding storybook or bit etc.
+* Create a non-trivial component which a host application can fully style without any risk of CSS class name collision.
 
 The screenshot below shows the JSON view with the CSS below applied.
 
