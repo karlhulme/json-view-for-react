@@ -1,6 +1,6 @@
 {
   "name": "json-view-for-react",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "description": "A JSON view that you can style using CSS, inline-styles or CSS-in-JS.",
   "main": "dist/index.js",
   "scripts": {
