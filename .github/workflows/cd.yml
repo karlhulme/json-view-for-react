@@ -54,11 +54,11 @@ jobs:
         with:
           ref: v${{ steps.prepare.outputs.releaseVersion }}
 
-      - name: Setup Node.js 12
+      - name: Setup Node.js 18
         if: steps.prepare.outputs.canRelease == 'yes'
         uses: actions/setup-node@v1
         with:
-          node-version: 12
+          node-version: 18
           registry-url: https://registry.npmjs.org/
 
       - name: Publish to NPM
