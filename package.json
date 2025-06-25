@@ -24,6 +24,7 @@
   },
   "homepage": "https://github.com/karlhulme/json-view-for-react#readme",
   "dependencies": {
+    "jest-environment-jsdom": "^30.0.2",
     "prop-types": "^15.7.2"
   },
   "devDependencies": {
